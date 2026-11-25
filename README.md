@@ -68,7 +68,8 @@ This repository contains the complete IaC Docker environment, PySpark pipelines,
 │   │       ├── dag_silver_promotion.py
 │   │       └── dag_gold_marts.py
 │   └── dashboard/
-│       └── app.py                  # Streamlit visualizer for Gold Mart statistics
+│       ├── api.py                  # FastAPI backend for the dashboard
+│       └── static/                 # Modern web frontend (HTML/CSS/JS)
 └── data/                           # Landing zone directory mounts (mapped to Docker)
     ├── shopify_drops/
     ├── distributor_drops/
@@ -136,11 +137,13 @@ Open the [Airflow Portal](http://localhost:8089) and trigger the following DAGs 
 
 ## 📊 Viewing the Analytics Dashboard
 
-We have included a beautiful **Streamlit** dashboard to visualize the Gold Mart insights (gross revenues, sales-by-channel over time, best-selling SKUs, customer profiles).
+We have included a beautiful, modern **HTML/CSS/JS** dashboard powered by a **FastAPI** backend to visualize the Gold Mart insights (gross revenues, sales-by-channel over time, best-selling SKUs, customer profiles).
 
 Install dependencies and launch it locally:
 ```bash
-pip install streamlit pandas
-streamlit run src/dashboard/app.py
+pip install fastapi uvicorn pandas
+uvicorn src.dashboard.api:app --reload --port 8501
 ```
-*(If Spark/MinIO is offline, the app dynamically generates in-memory mock datasets conforming to our Gold schemas so you can explore the user interface).*
+Then, open your browser and navigate to [http://localhost:8501](http://localhost:8501).
+
+*(If Spark/MinIO is offline, the API dynamically generates in-memory mock datasets conforming to our Gold schemas so you can explore the user interface).*

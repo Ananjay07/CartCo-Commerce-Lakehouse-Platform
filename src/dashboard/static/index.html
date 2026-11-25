@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CartCo Lakehouse Dashboard</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="icon">🛒</span>
+                <h1>CartCo</h1>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-target="dashboard">
+                    <span class="icon">📈</span> Dashboard
+                </a>
+                <a href="#" class="nav-item" data-target="inventory">
+                    <span class="icon">📦</span> Inventory
+                </a>
+                <a href="#" class="nav-item" data-target="customers">
+                    <span class="icon">👥</span> Customers
+                </a>
+            </nav>
+            
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <span id="data-source-status">Connecting...</span>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <h2>Unified Commerce Lakehouse</h2>
+                <div class="user-profile">
+                    <div class="avatar">A</div>
+                    <span>Admin</span>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <!-- Dashboard Tab -->
+                <section id="dashboard" class="tab-pane active">
+                    <!-- Metrics Row -->
+                    <div class="metrics-grid">
+                        <div class="metric-card glass-panel">
+                            <div class="metric-icon revenue-icon">💰</div>
+                            <div class="metric-info">
+                                <span class="metric-label">Total Gross Revenue</span>
+                                <h3 class="metric-value" id="metric-revenue">₹0.00</h3>
+                            </div>
+                        </div>
+                        <div class="metric-card glass-panel">
+                            <div class="metric-icon orders-icon">🛍️</div>
+                            <div class="metric-info">
+                                <span class="metric-label">Total Orders Ingested</span>
+                                <h3 class="metric-value" id="metric-orders">0</h3>
+                            </div>
+                        </div>
+                        <div class="metric-card glass-panel">
+                            <div class="metric-icon tax-icon">🧾</div>
+                            <div class="metric-info">
+                                <span class="metric-label">Total Tax (GST 18%)</span>
+                                <h3 class="metric-value" id="metric-tax">₹0.00</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Row -->
+                    <div class="charts-grid">
+                        <div class="chart-container glass-panel">
+                            <h3>Daily Sales Performance by Channel</h3>
+                            <div class="canvas-wrapper">
+                                <canvas id="revenueChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Inventory Tab -->
+                <section id="inventory" class="tab-pane">
+                    <div class="charts-grid inventory-grid">
+                        <div class="chart-container glass-panel">
+                            <h3>Top Sold Products by Revenue</h3>
+                            <div class="canvas-wrapper">
+                                <canvas id="inventoryChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="table-container glass-panel">
+                            <h3>SKU Sales & Turnover Analysis</h3>
+                            <table class="data-table" id="inventory-table">
+                                <thead>
+                                    <tr>
+                                        <th>SKU</th>
+                                        <th>Product Title</th>
+                                        <th>Units Sold</th>
+                                        <th>Total Sales (₹)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Populated by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Customers Tab -->
+                <section id="customers" class="tab-pane">
+                    <div class="table-container glass-panel">
+                        <h3>Customer Profiles (360 Degree View)</h3>
+                        <table class="data-table" id="customers-table">
+                            <thead>
+                                <tr>
+                                    <th>Customer ID</th>
+                                    <th>Email</th>
+                                    <th>Total Orders</th>
+                                    <th>Total Spend (₹)</th>
+                                    <th>Preferred Channel</th>
+                                    <th>First Purchase</th>
+                                    <th>Last Purchase</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="/static/app.js"></script>
+</body>
+</html>
